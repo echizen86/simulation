@@ -1,9 +1,12 @@
 package com.simulation.demo.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -15,21 +18,42 @@ public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
 	private Long id;
 	@NotNull
 	@Min(6)
 	@Max(25)
+	@Column(name = "user_name")
 	private String username;
 	@NotNull
 	@Min(8)
 	@Max(25)
+	@Column(name = "password")
 	private String password;
-	@NotNull
-	@Min(8)
-	@Max(25)
-	private String passwordConfirm;
+	
+	@OneToOne
+	@JoinColumn(name = "id")
+	private Role role;
+	
+	@OneToOne
+	@JoinColumn(name = "id")
+	private Team team;
 
-	private Role roles;
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	public Team getTeam() {
+		return team;
+	}
+
+	public void setTeam(Team team) {
+		this.team = team;
+	}
 
 	public Long getId() {
 		return id;
@@ -55,20 +79,12 @@ public class User {
 		this.password = password;
 	}
 
-	public String getPasswordConfirm() {
-		return passwordConfirm;
-	}
-
-	public void setPasswordConfirm(String passwordConfirm) {
-		this.passwordConfirm = passwordConfirm;
-	}
-
 	public Role getRoles() {
-		return roles;
+		return role;
 	}
 
 	public void setRoles(Role roles) {
-		this.roles = roles;
+		this.role = roles;
 	}
 
 	@Override
@@ -77,8 +93,8 @@ public class User {
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((passwordConfirm == null) ? 0 : passwordConfirm.hashCode());
-		result = prime * result + ((roles == null) ? 0 : roles.hashCode());
+		result = prime * result + ((role == null) ? 0 : role.hashCode());
+		result = prime * result + ((team == null) ? 0 : team.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
@@ -102,15 +118,15 @@ public class User {
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
-		if (passwordConfirm == null) {
-			if (other.passwordConfirm != null)
+		if (role == null) {
+			if (other.role != null)
 				return false;
-		} else if (!passwordConfirm.equals(other.passwordConfirm))
+		} else if (!role.equals(other.role))
 			return false;
-		if (roles == null) {
-			if (other.roles != null)
+		if (team == null) {
+			if (other.team != null)
 				return false;
-		} else if (!roles.equals(other.roles))
+		} else if (!team.equals(other.team))
 			return false;
 		if (username == null) {
 			if (other.username != null)
@@ -122,8 +138,8 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", passwordConfirm="
-				+ passwordConfirm + ", roles=" + roles + "]";
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", role=" + role + ", team="
+				+ team + "]";
 	}
 
 }
