@@ -9,17 +9,18 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "role")
-public class Role {
-
+@Table(name = "lastnames")
+public class LastNames {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id")
+	@Column(name = "ID")
 	private Long id;
-	@NotNull
-	@Column(name = "name_role")
-	private String nameRole;
 	
+	@NotNull
+	@Column(name = "last_name")
+	private String lastName;
+
 	public Long getId() {
 		return id;
 	}
@@ -28,12 +29,12 @@ public class Role {
 		this.id = id;
 	}
 
-	public String getName() {
-		return nameRole;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setName(String name) {
-		this.nameRole = name;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	@Override
@@ -41,7 +42,7 @@ public class Role {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((nameRole == null) ? 0 : nameRole.hashCode());
+		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		return result;
 	}
 
@@ -53,23 +54,25 @@ public class Role {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Role other = (Role) obj;
+		LastNames other = (LastNames) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (nameRole == null) {
-			if (other.nameRole != null)
+		if (lastName == null) {
+			if (other.lastName != null)
 				return false;
-		} else if (!nameRole.equals(other.nameRole))
+		} else if (!lastName.equals(other.lastName))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Role [id=" + id + ", name=" + nameRole + "]";
+		return "LastNames [id=" + id + ", lastName=" + lastName + "]";
 	}
+	
+	
 
 }
