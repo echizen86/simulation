@@ -12,12 +12,12 @@ public class AccountController {
 		return "Public Account # " + accountNumber;
 	}
 	
-	@RequestMapping(value = "/private/{accountNumber}")
+	@RequestMapping(value = "/priv/{accountNumber}")
 	public String getPrivateAccount(@PathVariable final int accountNumber) {
 		return "Private Account # " + accountNumber;
 	}
 	
-	@RequestMapping(value = "/private/admin/{accountNumber}")
+	@RequestMapping(value = "/priv/admin/{accountNumber}")
 	public String getPrivateAccountAdmin(@PathVariable final int accountNumber) {
 		return "Private Account Admin # " + accountNumber;
 	}
