@@ -4,7 +4,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
-import com.simulation.demo.domain.Stasts;
+import com.simulation.demo.domain.StatsPhysical;
 import com.simulation.demo.domain.Team;
 
 public class PlayerRequest {
@@ -21,7 +21,7 @@ public class PlayerRequest {
 	private String nationality;
 	
 	@OneToOne()
-	private Stasts stats;
+	private StatsPhysical stats;
 	
 	@ManyToOne
 	private Team team;
@@ -58,11 +58,11 @@ public class PlayerRequest {
 		this.nationality = nationality;
 	}
 
-	public Stasts getStats() {
+	public StatsPhysical getStats() {
 		return stats;
 	}
 
-	public void setStats(Stasts stats) {
+	public void setStats(StatsPhysical stats) {
 		this.stats = stats;
 	}
 

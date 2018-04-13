@@ -22,7 +22,7 @@ public class NamesController {
 
 	// CREATE
 	@RequestMapping(path = "/priv/names", method = RequestMethod.POST)
-	public @ResponseBody NamesDto addName(@RequestBody @Valid NamesRequest name) {
+	public @ResponseBody NamesDto addName(@RequestBody NamesRequest name) {
 		return nameService.addName(name);
 	}
 

@@ -8,14 +8,14 @@ import com.simulation.demo.domain.Player;
 
 public class TeamRequest {
 
-private Long id;
-	
+	private Long id;
+
 	@NotNull
 	private String name;
-	
+
 	@NotNull
 	private int budget;
-	
+
 	private List<Player> players;
 
 	public Long getId() {

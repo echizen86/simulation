@@ -1,11 +1,11 @@
 package com.simulation.demo.services.stats.assembler;
 
-import com.simulation.demo.domain.Stasts;
+import com.simulation.demo.domain.StatsPhysical;
 import com.simulation.demo.services.stats.dto.StatsDto;
 
 public class StatsAssembler {
 
-		public static StatsDto fromStats(Stasts stats) {
+		public static StatsDto fromStats(StatsPhysical stats) {
 			StatsDto s = new StatsDto();
 			s.setConnection(stats.getConnection());
 			s.setField(stats.getField());

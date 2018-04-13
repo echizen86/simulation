@@ -8,7 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -31,6 +34,30 @@ public class Team {
 	
 	@OneToMany(mappedBy = "team", cascade = CascadeType.PERSIST)
 	private List<Player> players;
+	
+	@ManyToOne
+	@JoinColumn(name = "league_id")
+	private League league;
+	
+	@OneToOne
+	@JoinColumn(name = "user_id")
+	private User user;
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public League getLeague() {
+		return league;
+	}
+
+	public void setLeague(League league) {
+		this.league = league;
+	}
 
 	public Long getId() {
 		return id;
@@ -70,8 +97,10 @@ public class Team {
 		int result = 1;
 		result = prime * result + budget;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((league == null) ? 0 : league.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((players == null) ? 0 : players.hashCode());
+		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
 	}
 
@@ -91,6 +120,11 @@ public class Team {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
+		if (league == null) {
+			if (other.league != null)
+				return false;
+		} else if (!league.equals(other.league))
+			return false;
 		if (name == null) {
 			if (other.name != null)
 				return false;
@@ -101,12 +135,18 @@ public class Team {
 				return false;
 		} else if (!players.equals(other.players))
 			return false;
+		if (user == null) {
+			if (other.user != null)
+				return false;
+		} else if (!user.equals(other.user))
+			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Team [id=" + id + ", name=" + name + ", budget=" + budget + ", players=" + players + "]";
+		return "Team [id=" + id + ", name=" + name + ", budget=" + budget + ", players=" + players + ", league="
+				+ league + ", user=" + user + "]";
 	}
 	
 	

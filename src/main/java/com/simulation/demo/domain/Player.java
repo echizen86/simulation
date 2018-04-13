@@ -33,8 +33,8 @@ public class Player {
 	private String nationality;
 	
 	@OneToOne()
-	@JoinColumn(name = "stats_id")
-	private Stasts stats;
+	@JoinColumn(name = "statsPhysical_id")
+	private StatsPhysical statsPhysical;	
 	
 	@ManyToOne
 	@JoinColumn(name = "team_id")
@@ -80,12 +80,12 @@ public class Player {
 		this.nationality = nationality;
 	}
 
-	public Stasts getStats() {
-		return stats;
+	public StatsPhysical getStats() {
+		return statsPhysical;
 	}
 
-	public void setStats(Stasts stats) {
-		this.stats = stats;
+	public void setStats(StatsPhysical stats) {
+		this.statsPhysical = stats;
 	}
 
 	@Override
@@ -96,7 +96,7 @@ public class Player {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((nationality == null) ? 0 : nationality.hashCode());
-		result = prime * result + ((stats == null) ? 0 : stats.hashCode());
+		result = prime * result + ((statsPhysical == null) ? 0 : statsPhysical.hashCode());
 		result = prime * result + ((team == null) ? 0 : team.hashCode());
 		return result;
 	}
@@ -130,10 +130,10 @@ public class Player {
 				return false;
 		} else if (!nationality.equals(other.nationality))
 			return false;
-		if (stats == null) {
-			if (other.stats != null)
+		if (statsPhysical == null) {
+			if (other.statsPhysical != null)
 				return false;
-		} else if (!stats.equals(other.stats))
+		} else if (!statsPhysical.equals(other.statsPhysical))
 			return false;
 		if (team == null) {
 			if (other.team != null)
@@ -146,7 +146,7 @@ public class Player {
 	@Override
 	public String toString() {
 		return "Player [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", nationality="
-				+ nationality + ", stats=" + stats + ", team=" + team + "]";
+				+ nationality + ", stats=" + statsPhysical + ", team=" + team + "]";
 	}
 	
 

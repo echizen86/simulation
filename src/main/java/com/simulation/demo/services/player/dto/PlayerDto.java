@@ -2,7 +2,7 @@ package com.simulation.demo.services.player.dto;
 
 import javax.validation.constraints.NotNull;
 
-import com.simulation.demo.domain.Stasts;
+import com.simulation.demo.domain.StatsPhysical;
 import com.simulation.demo.domain.Team;
 
 public class PlayerDto {
@@ -18,7 +18,7 @@ public class PlayerDto {
 	@NotNull
 	private String nationality;
 	
-	private Stasts stats;
+	private StatsPhysical stats;
 
 	private Team team;
 
@@ -115,11 +115,11 @@ public class PlayerDto {
 		this.nationality = nationality;
 	}
 
-	public Stasts getStats() {
+	public StatsPhysical getStats() {
 		return stats;
 	}
 
-	public void setStats(Stasts stats) {
+	public void setStats(StatsPhysical stats) {
 		this.stats = stats;
 	}
 

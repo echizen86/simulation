@@ -1,9 +1,9 @@
-package com.simulation.demo.services.league.service.dto;
+package com.simulation.demo.services.league.dto;
 
 public class LeagueDto {
-	
-private Long id;
-	
+
+	private Long id;
+
 	private char name;
 
 	private int division;

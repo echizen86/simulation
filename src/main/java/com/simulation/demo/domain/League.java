@@ -1,10 +1,14 @@
 package com.simulation.demo.domain;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -22,6 +26,17 @@ public class League {
 	@Column(name = "division")
 	@NotNull
 	private int division;
+	
+	@OneToMany(mappedBy = "league", cascade = CascadeType.PERSIST)
+	private List<Team> teams;
+
+	public List<Team> getTeams() {
+		return teams;
+	}
+
+	public void setTeams(List<Team> teams) {
+		this.teams = teams;
+	}
 
 	public Long getId() {
 		return id;
@@ -54,6 +69,7 @@ public class League {
 		result = prime * result + division;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + name;
+		result = prime * result + ((teams == null) ? 0 : teams.hashCode());
 		return result;
 	}
 
@@ -75,12 +91,17 @@ public class League {
 			return false;
 		if (name != other.name)
 			return false;
+		if (teams == null) {
+			if (other.teams != null)
+				return false;
+		} else if (!teams.equals(other.teams))
+			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "League [id=" + id + ", name=" + name + ", division=" + division + "]";
+		return "League [id=" + id + ", name=" + name + ", division=" + division + ", teams=" + teams + "]";
 	}
 	
 	

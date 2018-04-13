@@ -35,7 +35,7 @@ public class User {
 	@JoinColumn(name = "id")
 	private Role role;
 	
-	@OneToOne
+	@OneToOne(mappedBy = "user")
 	@JoinColumn(name = "id")
 	private Team team;
 

@@ -9,8 +9,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "stats")
-public class Stasts {
+@Table(name = "stats_physical")
+public class StatsPhysical {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -128,7 +128,7 @@ public class Stasts {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Stasts other = (Stasts) obj;
+		StatsPhysical other = (StatsPhysical) obj;
 		if (connection != other.connection)
 			return false;
 		if (field != other.field)
