@@ -6,4 +6,6 @@ public interface LeagueService {
 
 	public League addLeague(League league);
 
+	League findById(Long id);
+
 }

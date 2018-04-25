@@ -1,9 +1,5 @@
 package com.simulation.demo.controllers.request;
 
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.validation.constraints.NotNull;
-
 import com.simulation.demo.domain.StatsPhysical;
 import com.simulation.demo.domain.Team;
 
@@ -11,19 +7,14 @@ public class PlayerRequest {
 	
 	private Long id;
 	
-	@NotNull
 	private String firstName;
 	
-	@NotNull
 	private String lastName;
 	
-	@NotNull
 	private String nationality;
 	
-	@OneToOne()
 	private StatsPhysical stats;
 	
-	@ManyToOne
 	private Team team;
 
 	public Long getId() {

@@ -6,7 +6,6 @@ public class NamesDto {
 
 	private Long id;
 
-	@NotNull
 	private String name;
 
 	public Long getId() {

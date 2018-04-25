@@ -5,19 +5,24 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "lastnames")
-public class LastNames {
-	
+@Table(name = "season")
+public class Season {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ID")
 	private Long id;
 	
-	@Column(name = "last_name")
-	private String lastName;
+	private int number;
+	
+	@OneToOne
+	@JoinColumn(name = "shedule_id")
+	private Schedule schedule;
 
 	public Long getId() {
 		return id;
@@ -27,12 +32,25 @@ public class LastNames {
 		this.id = id;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public int getNumber() {
+		return number;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setNumber(int number) {
+		this.number = number;
+	}
+
+	public Schedule getSchedule() {
+		return schedule;
+	}
+
+	public void setSchedule(Schedule schedule) {
+		this.schedule = schedule;
+	}
+
+	@Override
+	public String toString() {
+		return "Season [id=" + id + ", number=" + number + ", schedule=" + schedule + "]";
 	}
 
 	@Override
@@ -40,7 +58,8 @@ public class LastNames {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+		result = prime * result + number;
+		result = prime * result + ((schedule == null) ? 0 : schedule.hashCode());
 		return result;
 	}
 
@@ -52,25 +71,21 @@ public class LastNames {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		LastNames other = (LastNames) obj;
+		Season other = (Season) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (lastName == null) {
-			if (other.lastName != null)
+		if (number != other.number)
+			return false;
+		if (schedule == null) {
+			if (other.schedule != null)
 				return false;
-		} else if (!lastName.equals(other.lastName))
+		} else if (!schedule.equals(other.schedule))
 			return false;
 		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "LastNames [id=" + id + ", lastName=" + lastName + "]";
-	}
+	}	
 	
 	
-
 }

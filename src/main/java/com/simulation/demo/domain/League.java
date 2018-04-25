@@ -8,7 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -27,6 +29,18 @@ public class League {
 	@NotNull
 	private int division;
 	
+	@OneToOne
+	@JoinColumn(name = "season_id")
+	private Season season;
+	
+	public Season getSeason() {
+		return season;
+	}
+
+	public void setSeason(Season season) {
+		this.season = season;
+	}
+
 	@OneToMany(mappedBy = "league", cascade = CascadeType.PERSIST)
 	private List<Team> teams;
 
@@ -69,7 +83,8 @@ public class League {
 		result = prime * result + division;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + name;
-		result = prime * result + ((teams == null) ? 0 : teams.hashCode());
+		result = prime * result + ((season == null) ? 0 : season.hashCode());
+//		result = prime * result + ((teams == null) ? 0 : teams.hashCode());
 		return result;
 	}
 
@@ -91,6 +106,11 @@ public class League {
 			return false;
 		if (name != other.name)
 			return false;
+		if (season == null) {
+			if (other.season != null)
+				return false;
+		} else if (!season.equals(other.season))
+			return false;
 		if (teams == null) {
 			if (other.teams != null)
 				return false;
@@ -101,7 +121,8 @@ public class League {
 
 	@Override
 	public String toString() {
-		return "League [id=" + id + ", name=" + name + ", division=" + division + ", teams=" + teams + "]";
+		return "League [id=" + id + ", name=" + name + ", division=" + division + ", season=" + season + ", teams="
+				+ teams + "]";
 	}
 	
 	

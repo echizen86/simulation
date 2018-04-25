@@ -34,72 +34,17 @@ public class Player {
 	
 	@OneToOne()
 	@JoinColumn(name = "statsPhysical_id")
-	private StatsPhysical statsPhysical;	
+	private StatsPhysical statsPhysical;
+	
+	private String position;
+	
+	@ManyToOne
+	@JoinColumn(name = "season_id")
+	private Season season;
 	
 	@ManyToOne
 	@JoinColumn(name = "team_id")
 	private Team team;
-
-	public Team getTeam() {
-		return team;
-	}
-
-	public void setTeam(Team team) {
-		this.team = team;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getNationality() {
-		return nationality;
-	}
-
-	public void setNationality(String nationality) {
-		this.nationality = nationality;
-	}
-
-	public StatsPhysical getStats() {
-		return statsPhysical;
-	}
-
-	public void setStats(StatsPhysical stats) {
-		this.statsPhysical = stats;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
-		result = prime * result + ((nationality == null) ? 0 : nationality.hashCode());
-		result = prime * result + ((statsPhysical == null) ? 0 : statsPhysical.hashCode());
-		result = prime * result + ((team == null) ? 0 : team.hashCode());
-		return result;
-	}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -130,6 +75,16 @@ public class Player {
 				return false;
 		} else if (!nationality.equals(other.nationality))
 			return false;
+		if (position == null) {
+			if (other.position != null)
+				return false;
+		} else if (!position.equals(other.position))
+			return false;
+		if (season == null) {
+			if (other.season != null)
+				return false;
+		} else if (!season.equals(other.season))
+			return false;
 		if (statsPhysical == null) {
 			if (other.statsPhysical != null)
 				return false;
@@ -143,11 +98,99 @@ public class Player {
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "Player [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", nationality="
-				+ nationality + ", stats=" + statsPhysical + ", team=" + team + "]";
+	public String getFirstName() {
+		return firstName;
 	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public String getNationality() {
+		return nationality;
+	}
+
+	public String getPosition() {
+		return position;
+	}
+
+	public Season getSeason() {
+		return season;
+	}
+
+	public StatsPhysical getStats() {
+		return statsPhysical;
+	}
+
+	public StatsPhysical getStatsPhysical() {
+		return statsPhysical;
+	}
+
+	public Team getTeam() {
+		return team;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+		result = prime * result + ((nationality == null) ? 0 : nationality.hashCode());
+		result = prime * result + ((position == null) ? 0 : position.hashCode());
+		result = prime * result + ((season == null) ? 0 : season.hashCode());
+		result = prime * result + ((statsPhysical == null) ? 0 : statsPhysical.hashCode());
+//		result = prime * result + ((team == null) ? 0 : team.hashCode());
+		return result;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public void setNationality(String nationality) {
+		this.nationality = nationality;
+	}
+
+	public void setPosition(String position) {
+		this.position = position;
+	}
+
+	public void setSeason(Season season) {
+		this.season = season;
+	}
+
+	public void setStats(StatsPhysical stats) {
+		this.statsPhysical = stats;
+	}
+
+	public void setStatsPhysical(StatsPhysical statsPhysical) {
+		this.statsPhysical = statsPhysical;
+	}
+
+	public void setTeam(Team team) {
+		this.team = team;
+	}
+
+//	@Override
+//	public String toString() {
+//		return "Player [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", nationality="
+//				+ nationality + ", statsPhysical=" + statsPhysical + ", position=" + position + ", season=" + season
+//				+ ", team=" + team + "]";
+//	}
 	
 
 }

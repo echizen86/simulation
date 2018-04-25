@@ -143,11 +143,11 @@ public class Team {
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "Team [id=" + id + ", name=" + name + ", budget=" + budget + ", players=" + players + ", league="
-				+ league + ", user=" + user + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Team [id=" + id + ", name=" + name + ", budget=" + budget + ", players=" + players + ", league="
+//				+ league + ", user=" + user + "]";
+//	}
 	
 	
 

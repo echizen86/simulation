@@ -7,5 +7,7 @@ import com.simulation.demo.domain.League;
 
 @Repository
 public interface LeagueRepository extends CrudRepository<League, Long>{
-
+	
+	League findByName(char name);
+	
 }

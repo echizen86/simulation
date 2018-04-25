@@ -1,23 +1,27 @@
 package com.simulation.demo.domain;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "lastnames")
-public class LastNames {
+@Table(name = "schedule")
+public class Schedule {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ID")
 	private Long id;
 	
-	@Column(name = "last_name")
-	private String lastName;
+	@ManyToOne(targetEntity=Game.class)
+	private List<Game> games;
 
 	public Long getId() {
 		return id;
@@ -27,20 +31,25 @@ public class LastNames {
 		this.id = id;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public List<Game> getGames() {
+		return games;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setGames(List<Game> games) {
+		this.games = games;
+	}
+
+	@Override
+	public String toString() {
+		return "Schedule [id=" + id + ", games=" + games + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((games == null) ? 0 : games.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		return result;
 	}
 
@@ -52,23 +61,18 @@ public class LastNames {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		LastNames other = (LastNames) obj;
+		Schedule other = (Schedule) obj;
+		if (games == null) {
+			if (other.games != null)
+				return false;
+		} else if (!games.equals(other.games))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (lastName == null) {
-			if (other.lastName != null)
-				return false;
-		} else if (!lastName.equals(other.lastName))
-			return false;
 		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "LastNames [id=" + id + ", lastName=" + lastName + "]";
 	}
 	
 	

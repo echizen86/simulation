@@ -11,4 +11,6 @@ public interface TeamService {
 
 	Team CreateTeamsNew(League l, int num);
 
+	Iterable<Team> getAll();
+
 }

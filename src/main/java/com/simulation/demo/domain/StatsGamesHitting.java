@@ -10,47 +10,59 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "stats_hitting")
 public class StatsGamesHitting {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ID")
 	private Long id;
-	
+
 	@Column(name = "game")
 	private int game;
-	
+
 	@Column(name = "at_bat")
 	private int atBat;
-	
+
 	@Column(name = "run")
 	private int run;
-	
+
 	@Column(name = "hit")
 	private int hit;
-	
+
 	@Column(name = "doble")
 	private int doble;
-	
+
 	@Column(name = "triple")
 	private int triple;
-	
+
 	@Column(name = "homerun")
 	private int homerun;
-	
+
 	@Column(name = "rbi")
 	private int rbi;
-	
+
 	@Column(name = "bb")
 	private int bb;
-	
+
 	@Column(name = "strike_out")
 	private int strikeOut;
-	
+
 	@Column(name = "stolen_base")
 	private int stolenBase;
-	
+
 	@Column(name = "caught_stolen")
 	private int caughtStolen;
+	
+	@Column(name = "hit_by_pitcher")
+	public int hitByPitch;
+
+	public int getAVE() {
+		return (int) this.getHit() / this.getAtBat();
+	}
+
+	public int getSlugging() {
+		return (int) (this.getHit() + (this.getDoble() * 2) + (this.getTriple() * 3) + (this.getHomerun() * 4))
+				/ this.getAtBat();
+	}
 
 	public Long getId() {
 		return id;
@@ -58,6 +70,14 @@ public class StatsGamesHitting {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public int getHitByPitch() {
+		return hitByPitch;
+	}
+
+	public void setHitByPitch(int hitByPitch) {
+		this.hitByPitch = hitByPitch;
 	}
 
 	public int getGame() {
@@ -160,7 +180,8 @@ public class StatsGamesHitting {
 	public String toString() {
 		return "StatsGamesHitting [id=" + id + ", game=" + game + ", atBat=" + atBat + ", run=" + run + ", hit=" + hit
 				+ ", doble=" + doble + ", triple=" + triple + ", homerun=" + homerun + ", rbi=" + rbi + ", bb=" + bb
-				+ ", strikeOut=" + strikeOut + ", stolenBase=" + stolenBase + ", caughtStolen=" + caughtStolen + "]";
+				+ ", strikeOut=" + strikeOut + ", stolenBase=" + stolenBase + ", caughtStolen=" + caughtStolen
+				+ ", hitByPitch=" + hitByPitch + "]";
 	}
 
 	@Override
@@ -173,6 +194,7 @@ public class StatsGamesHitting {
 		result = prime * result + doble;
 		result = prime * result + game;
 		result = prime * result + hit;
+		result = prime * result + hitByPitch;
 		result = prime * result + homerun;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + rbi;
@@ -204,6 +226,8 @@ public class StatsGamesHitting {
 			return false;
 		if (hit != other.hit)
 			return false;
+		if (hitByPitch != other.hitByPitch)
+			return false;
 		if (homerun != other.homerun)
 			return false;
 		if (id == null) {
@@ -223,10 +247,5 @@ public class StatsGamesHitting {
 			return false;
 		return true;
 	}
-	
-
-	
-	
-	
 
 }
